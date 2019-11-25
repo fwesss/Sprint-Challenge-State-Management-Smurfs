@@ -16,6 +16,8 @@ const pushSmurfData = createSlice({
       return {
         ...state,
         postingSmurf: true,
+        success: null,
+        error: null,
       };
     },
     postSmurfSuccess(state, action) {
@@ -43,7 +45,7 @@ export const postSmurf = ({ name, age, height }) => async (dispatch) => {
   dispatch(postingSmurf());
   try {
     const newSmurfData = await postSmurfsData({ name, age, height });
-    dispatch(postSmurfSuccess(newSmurfData));
+    dispatch(postSmurfSuccess(newSmurfData.toString()));
   } catch (error) {
     dispatch(postSmurfFailed(error.toString()));
   }

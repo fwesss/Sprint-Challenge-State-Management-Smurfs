@@ -18,6 +18,7 @@ const setSmurfsData = createSlice({
       return {
         ...state,
         fetchingSmurfs: true,
+        error: null,
       };
     },
     getSmurfsSuccess(state, action) {

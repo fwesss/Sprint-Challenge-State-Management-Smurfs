@@ -35,6 +35,12 @@ const SmurfForm = () => {
     } else {
       dispatch(postSmurf(processedInfo));
     }
+
+    setSmurfInfo({
+      name: '',
+      age: 0,
+      height: 0,
+    });
   };
 
   const handleChange = (event) => {

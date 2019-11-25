@@ -22,6 +22,8 @@ const editSmurfData = createSlice({
       return {
         ...state,
         editingSmurf: true,
+        success: null,
+        error: null,
       };
     },
     markSmurfForEditing(state, action) {
@@ -34,7 +36,7 @@ const editSmurfData = createSlice({
       return {
         ...state,
         success: action.payload,
-        postingSmurf: false,
+        editingSmurf: false,
       };
     },
     putSmurfFailed(state, action) {
