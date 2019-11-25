@@ -8,11 +8,11 @@ const initialState = {
   error: null,
 };
 
-const pushSmurfsData = createSlice({
+const pushSmurfData = createSlice({
   name: 'postSmurfs',
   initialState,
   reducers: {
-    postingSmurfs(state) {
+    postingSmurf(state) {
       return {
         ...state,
         postingSmurf: true,
@@ -35,12 +35,12 @@ const pushSmurfsData = createSlice({
   },
 });
 
-export const { postingSmurfs, postSmurfSuccess, postSmurfFailed } = pushSmurfsData.actions;
+export const { postingSmurf, postSmurfSuccess, postSmurfFailed } = pushSmurfData.actions;
 
-export default pushSmurfsData.reducer;
+export default pushSmurfData.reducer;
 
 export const postSmurf = ({ name, age, height }) => async (dispatch) => {
-  dispatch(postingSmurfs());
+  dispatch(postingSmurf());
   try {
     const newSmurfData = await postSmurfsData({ name, age, height });
     dispatch(postSmurfSuccess(newSmurfData));

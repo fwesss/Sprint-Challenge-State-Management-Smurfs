@@ -13,3 +13,8 @@ export const postSmurfsData = async ({ name, age, height }) => {
   });
   return response;
 };
+
+export const putSmurfData = async (smurf, id) => {
+  const { response } = await axios.put(`http://localhost:3333/smurfs/${id}`, smurf);
+  return response;
+};

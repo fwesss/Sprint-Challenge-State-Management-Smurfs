@@ -9,7 +9,10 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 // Actions
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
 import { getSmurfs } from './getSmurfsSlice';
+import { markSmurfForEditing } from '../editSmurfs/editSmurfsSlice';
 
 const useStyles = makeStyles({
   paper: {
@@ -41,6 +44,11 @@ const SmurfList = () => {
     dispatch(getSmurfs());
   }, [dispatch]);
 
+  const handleEdit = (id) => {
+    const smurfToEdit = smurfs.find((smurf) => smurf.id === id);
+    dispatch(markSmurfForEditing(smurfToEdit));
+  };
+
   if (error) {
     return (
       <div>
@@ -60,6 +68,9 @@ const SmurfList = () => {
                 <Typography variant="h3" className={classes.listItem}>{`Age: ${smurf.age}`}</Typography>
                 <Typography variant="h3" className={classes.listItem}>{`Height: ${smurf.height}`}</Typography>
               </CardContent>
+              <CardActions>
+                <Button onClick={() => handleEdit(smurf.id)}>Edit</Button>
+              </CardActions>
             </Card>
           ))}
         </>
