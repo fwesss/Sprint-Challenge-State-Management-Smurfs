@@ -23,9 +23,7 @@ const setSmurfsData = createSlice({
     getSmurfsSuccess(state, action) {
       return {
         ...state,
-        smurfs: [
-          ...state.smurfs, action.payload,
-        ],
+        smurfs: action.payload,
         fetchingSmurfs: false,
       };
     },

@@ -39,12 +39,12 @@ export const { postingSmurfs, postSmurfSuccess, postSmurfFailed } = pushSmurfsDa
 
 export default pushSmurfsData.reducer;
 
-export const postSmurf = (name, age, height) => async (dispatch) => {
+export const postSmurf = ({ name, age, height }) => async (dispatch) => {
   dispatch(postingSmurfs());
   try {
-    const newSmurfData = await postSmurfsData(name, age, height);
+    const newSmurfData = await postSmurfsData({ name, age, height });
     dispatch(postSmurfSuccess(newSmurfData));
   } catch (error) {
-    dispatch(postSmurfFailed(error));
+    dispatch(postSmurfFailed(error.toString()));
   }
 };

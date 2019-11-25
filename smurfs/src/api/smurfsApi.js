@@ -5,7 +5,7 @@ export const getSmurfsData = async () => {
   return data;
 };
 
-export const postSmurfsData = async (name, age, height) => {
+export const postSmurfsData = async ({ name, age, height }) => {
   const { response } = await axios.post('http://localhost:3333/smurfs', {
     name,
     age,

@@ -22,7 +22,6 @@ const SmurfAdder = () => {
       height: `${smurfInfo.height}cm`,
     };
 
-    console.log(processedInfo);
     dispatch(postSmurf(processedInfo));
   };
 

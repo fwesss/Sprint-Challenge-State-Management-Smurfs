@@ -9,10 +9,13 @@ import store from './app/store';
 import App from './app/App';
 // UI
 import './index.css';
+import { Container } from '@material-ui/core';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Container>
+      <App />
+    </Container>
   </Provider>,
   document.getElementById('root'),
 );

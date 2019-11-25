@@ -1,18 +1,41 @@
 // React
 import React, { useEffect } from 'react';
 // Redux
-// import { useDispatch, useSelector } from 'react-redux';
-// Actions
-// import { getSmurfs } from './getSmurfsSlice';
-// API
 import { useDispatch, useSelector } from 'react-redux';
-// import { getSmurfsData } from '../../api/smurfsApi';
+// UI
+import { Paper } from '@material-ui/core';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+// Actions
 import { getSmurfs } from './getSmurfsSlice';
 
-const SmurfList = () => {
-  const dispatch = useDispatch();
+const useStyles = makeStyles({
+  paper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    padding: 15,
+  },
+  card: {
+    minWidth: 275,
+    margin: 15,
+    padding: 10,
+  },
+  title: {
+    fontSize: 20,
+  },
+  listItem: {
+    fontSize: 16,
+  },
+});
 
-  const { fetchingSmurfs, smurfs: smurfsList, error } = useSelector((state) => state.getSmurfs);
+const SmurfList = () => {
+  const classes = useStyles();
+
+  const dispatch = useDispatch();
+  const { fetchingSmurfs, smurfs, error } = useSelector((state) => state.getSmurfs);
 
   useEffect(() => {
     dispatch(getSmurfs());
@@ -27,23 +50,21 @@ const SmurfList = () => {
   }
 
   return (
-    <>
-      <div>
-        {fetchingSmurfs ? <p>...loading</p> : (
-          <>
-            {smurfsList.map((smurfs) => (
-              smurfs.map((smurf) => (
-                <ul key={smurf}>
-                  <li>{smurf.name}</li>
-                  <li>{smurf.age}</li>
-                  <li>{smurf.height}</li>
-                </ul>
-              ))
-            ))}
-          </>
-        )}
-      </div>
-    </>
+    <Paper elevation={3} className={classes.paper}>
+      {fetchingSmurfs ? <p>...loading</p> : (
+        <>
+          {smurfs.map((smurf) => (
+            <Card key={smurf.id} className={classes.card}>
+              <CardContent>
+                <Typography variant="h2" className={classes.title}>{smurf.name}</Typography>
+                <Typography variant="h3" className={classes.listItem}>{`Age: ${smurf.age}`}</Typography>
+                <Typography variant="h3" className={classes.listItem}>{`Height: ${smurf.height}`}</Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </>
+      )}
+    </Paper>
   );
 };
 
