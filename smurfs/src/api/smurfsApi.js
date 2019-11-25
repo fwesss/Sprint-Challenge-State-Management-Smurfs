@@ -11,5 +11,5 @@ export const postSmurfsData = async (name, age, height) => {
     age,
     height,
   });
-  return response.res;
+  return response;
 };
