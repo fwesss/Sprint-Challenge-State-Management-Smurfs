@@ -49,6 +49,6 @@ export const getSmurfs = () => async (dispatch) => {
     const smurfsData = await getSmurfsData();
     dispatch(getSmurfsSuccess(smurfsData));
   } catch (error) {
-    dispatch(getSmurfsFailed(error.toString()));
+    dispatch(getSmurfsFailed(error));
   }
 };

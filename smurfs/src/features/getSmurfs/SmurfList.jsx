@@ -37,7 +37,6 @@ const SmurfList = () => {
                   <li>{smurf.name}</li>
                   <li>{smurf.age}</li>
                   <li>{smurf.height}</li>
-                  <li>{smurf.id}</li>
                 </ul>
               ))
             ))}
